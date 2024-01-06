@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:payment_module/payment/style/styles.dart';
 
 class CheckoutNavbar extends StatefulWidget {
-  const CheckoutNavbar({super.key});
+  const CheckoutNavbar({super.key, required this.title});
+  final String title;
 
   @override
   State<CheckoutNavbar> createState() => _CheckoutNavbarState();
@@ -36,15 +37,7 @@ class _CheckoutNavbarState extends State<CheckoutNavbar> {
             ),
             SizedBox(
               width: 24,
-              child:
-                  // IconButton(
-                  //   onPressed: () {},
-                  //   icon: Icon(
-                  //     Icons.notifications_none,
-                  //     color: whiteColor,
-                  //   ),
-                  // )
-                  Image.asset(
+              child: Image.asset(
                 "assets/images/bell.png",
                 height: 24,
               ),

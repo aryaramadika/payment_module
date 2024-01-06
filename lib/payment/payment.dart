@@ -15,7 +15,9 @@ class Payment extends StatelessWidget {
       backgroundColor: whiteColor,
       body: const Column(
         children: [
-          CheckoutNavbar(),
+          CheckoutNavbar(
+            title: "Checkout",
+          ),
           Expanded(
             child: PaymentScreen(
               widgets: Header(),
