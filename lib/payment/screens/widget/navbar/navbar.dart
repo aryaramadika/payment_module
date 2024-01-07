@@ -31,7 +31,7 @@ class _CheckoutNavbarState extends State<CheckoutNavbar> {
               ),
             ),
             Text(
-              "Checkout",
+              widget.title,
               style: TextStyle(
                   fontSize: 20, fontWeight: semiBold, color: whiteColor),
             ),

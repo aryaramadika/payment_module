@@ -25,7 +25,7 @@ class _CardListState extends State<CardList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
+      height: 670,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(36), topRight: Radius.circular(36)),

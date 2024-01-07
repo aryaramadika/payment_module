@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/home.dart';
 import 'package:payment_module/payment/payment.dart';
+import 'package:payment_module/ticket/transportation.dart';
 
 void main() async {
   runApp(const App());
@@ -10,9 +12,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Payment(),
+      initialRoute: '/',
+      routes: {
+        "/": (context) => const Home(),
+        "/payment": (context) => const Payment(),
+        "/transportation": (context) => const Transportation(),
+      },
     );
   }
 }

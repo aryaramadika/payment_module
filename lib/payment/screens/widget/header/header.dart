@@ -19,8 +19,8 @@ class _HeaderState extends State<Header> {
           child: Column(
             children: [
               Container(
-                width: 350.36,
-                height: 150,
+                width: double.infinity,
+                height: 158,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,
@@ -64,8 +64,10 @@ class _HeaderState extends State<Header> {
                         fontFamily: "Poppins",
                       ),
                     ),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Container(
-                      margin: const EdgeInsets.only(top: 8),
                       child: Text(
                         "Rp 750.000",
                         // textAlign: TextAlign.left,
@@ -79,9 +81,9 @@ class _HeaderState extends State<Header> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
             ],
           ),
         ),

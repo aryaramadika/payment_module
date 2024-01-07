@@ -11,7 +11,7 @@ class AddCardModal extends StatelessWidget {
     bool _selectedValue = false; // Initially selected radio button value
 
     return Container(
-      height: 500,
+      height: 670,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(36), topRight: Radius.circular(36)),
