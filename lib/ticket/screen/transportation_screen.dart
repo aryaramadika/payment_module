@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/ticket/screen/widget/search/search_wigdet.dart';
 
 class TransportationScreen extends StatefulWidget {
-  const TransportationScreen({super.key});
+  const TransportationScreen({Key? key, required this.selectedTicketType})
+      : super(key: key);
+
+  final String selectedTicketType;
 
   @override
   State<TransportationScreen> createState() => _TransportationScreenState();
@@ -11,15 +15,32 @@ class _TransportationScreenState extends State<TransportationScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Column(
-          children: [
-            Text("Search wigdet"),
-            Text("Promo Content"),
-            Text("Popular Destination"),
-          ],
-        ),
+      child: Column(
+        children: [
+          if (widget.selectedTicketType == "Bus")
+            Container(
+              child: Text("Bus Container"),
+            ),
+          if (widget.selectedTicketType == "Boat")
+            Container(
+              child: Text("Boat Container"),
+            ),
+          if (widget.selectedTicketType == "Airport")
+            Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 234, 241, 248),
+                  ),
+                ),
+              ),
+              child: const SearchWigdet(),
+            ),
+          Container(
+            child: Text("Airport Container"),
+          ),
+        ],
       ),
     );
   }

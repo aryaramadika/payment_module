@@ -35,36 +35,70 @@ class _HeaderTransportationWigdetState
 
   Widget buildTransportationContainer(int index, String label) {
     bool isSelected = widget.selectedTicketType == label;
+    String imagePath = '';
+
+    // Assign the appropriate image path based on the label
+    if (label == "Boat") {
+      imagePath = "assets/images/boat.png";
+    } else if (label == "Airport") {
+      imagePath = "assets/images/airplane-fill.png";
+    } else if (label == "Bus") {
+      imagePath = "assets/images/bus.png";
+    }
+
     return GestureDetector(
       onTap: () {
         widget.onChangedTicketType(label);
       },
-      child: Container(
-        width: 64,
-        height: 64,
-        decoration: BoxDecoration(
-          color: isSelected ? primary : Color(0xffE9E9E9),
-          borderRadius: BorderRadius.circular(200),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              offset: const Offset(1, 1),
-              blurRadius: 2,
-              spreadRadius: 0,
+      child: Column(
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: isSelected ? primary : Color(0xffE9E9E9),
+              borderRadius: BorderRadius.circular(200),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  offset: const Offset(1, 1),
+                  blurRadius: 2,
+                  spreadRadius: 0,
+                ),
+              ],
             ),
-          ],
-        ),
-        child: Center(
-          child: Text(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ColorFiltered(
+                    colorFilter: isSelected
+                        ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
+                        : const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                    child: Image(
+                      width: 36,
+                      height: 36,
+                      image: AssetImage(imagePath),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          // Uncomment the following lines if you want to display the label text
+          Text(
             label,
             style: TextStyle(
-              color: isSelected ? whiteColor : Colors.black,
-              fontSize: 16,
-              fontWeight: medium,
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: semiBold,
               fontFamily: "Poppins",
             ),
           ),
-        ),
+        ],
       ),
     );
   }

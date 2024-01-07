@@ -22,8 +22,12 @@ class _TransportationState extends State<Transportation> {
       // Update headerTitle based on selected ticket type
       if (selectedTicketType == "Airport") {
         headerTitle = "Airport Transport";
-      } else {
-        headerTitle = "Transportation Ticket";
+      }
+      if (selectedTicketType == "Boat") {
+        headerTitle = "Boat Transport";
+      }
+      if (selectedTicketType == "Bus") {
+        headerTitle = "Bus Transport";
       }
     });
   }
@@ -48,7 +52,9 @@ class _TransportationState extends State<Transportation> {
               selectedTicketType: selectedTicketType,
             ),
           ),
-          TransportationScreen()
+          TransportationScreen(
+            selectedTicketType: selectedTicketType,
+          )
         ],
       ),
     );
