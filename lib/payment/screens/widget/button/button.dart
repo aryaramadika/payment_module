@@ -3,16 +3,23 @@ import 'package:payment_module/payment/style/styles.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget(
-      {super.key, required this.isButtonDisabled, required this.title});
+      {super.key,
+      required this.isButtonDisabled,
+      required this.title,
+      required this.paddinHorizontal,
+      required this.paddingVertical});
 
   final bool isButtonDisabled;
   final String title;
+  final double paddinHorizontal;
+  final double paddingVertical;
 
   @override
   Widget build(BuildContext context) {
     print("is disable $isButtonDisabled");
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: EdgeInsets.symmetric(
+          horizontal: paddinHorizontal, vertical: paddingVertical),
       child: TextButton(
         onPressed: () {
           // Your button logic goes here
@@ -29,7 +36,8 @@ class ButtonWidget extends StatelessWidget {
           title,
           style: TextStyle(
               fontWeight: medium,
-              color: isButtonDisabled ? greyColor : whiteColor),
+              color: isButtonDisabled ? greyColor : whiteColor,
+              fontFamily: "Poppins"),
         ),
       ),
     );

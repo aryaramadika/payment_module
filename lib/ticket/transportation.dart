@@ -52,8 +52,10 @@ class _TransportationState extends State<Transportation> {
               selectedTicketType: selectedTicketType,
             ),
           ),
-          TransportationScreen(
-            selectedTicketType: selectedTicketType,
+          Expanded(
+            child: TransportationScreen(
+              selectedTicketType: selectedTicketType,
+            ),
           )
         ],
       ),

@@ -26,20 +26,24 @@ class _TransportationScreenState extends State<TransportationScreen> {
               child: Text("Boat Container"),
             ),
           if (widget.selectedTicketType == "Airport")
-            Container(
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 1,
-                    color: Color.fromARGB(255, 234, 241, 248),
+            Column(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 234, 241, 248),
+                      ),
+                    ),
                   ),
+                  child: SearchWidget(),
                 ),
-              ),
-              child: const SearchWigdet(),
+                Container(
+                  child: Text("Airport Container"),
+                ),
+              ],
             ),
-          Container(
-            child: Text("Airport Container"),
-          ),
         ],
       ),
     );

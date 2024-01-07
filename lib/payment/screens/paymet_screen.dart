@@ -133,7 +133,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ButtonWidget(
                 isButtonDisabled: isButtonDisabled,
                 title: "Purchase",
+                paddinHorizontal: 20,
+                paddingVertical: 20,
               ),
+              const SizedBox(
+                height: 100,
+              )
             ],
           ),
         ),
