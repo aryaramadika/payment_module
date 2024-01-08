@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/ticket/screen/widget/search/search_boat.dart';
 import 'package:payment_module/ticket/screen/widget/search/search_wigdet.dart';
 
 class TransportationScreen extends StatefulWidget {
@@ -22,8 +23,23 @@ class _TransportationScreenState extends State<TransportationScreen> {
               child: Text("Bus Container"),
             ),
           if (widget.selectedTicketType == "Boat")
-            Container(
-              child: Text("Boat Container"),
+            Column(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 234, 241, 248),
+                      ),
+                    ),
+                  ),
+                  child: SearchBoatWidget(),
+                ),
+                Container(
+                  child: Text("Boat Container"),
+                ),
+              ],
             ),
           if (widget.selectedTicketType == "Airport")
             Column(

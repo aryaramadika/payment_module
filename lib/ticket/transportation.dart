@@ -12,8 +12,8 @@ class Transportation extends StatefulWidget {
 }
 
 class _TransportationState extends State<Transportation> {
-  String selectedTicketType = "Airport"; // Default selected ticket type
-  String headerTitle = "Airport Transport";
+  String selectedTicketType = "Boat"; // Default selected ticket type
+  String headerTitle = "Boat Transport";
 
   void onChangeTicketType(String ticketType) {
     setState(() {
