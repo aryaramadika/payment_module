@@ -38,7 +38,10 @@ class _TransportationState extends State<Transportation> {
       backgroundColor: whiteColor,
       body: Column(
         children: [
-          CheckoutNavbar(title: headerTitle),
+          CheckoutNavbar(
+            title: headerTitle,
+            steps: Text(''),
+          ),
           Container(
             decoration: const BoxDecoration(
                 border: Border(

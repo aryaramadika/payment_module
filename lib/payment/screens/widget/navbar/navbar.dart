@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:payment_module/payment/style/styles.dart';
 
 class CheckoutNavbar extends StatefulWidget {
-  const CheckoutNavbar({super.key, required this.title});
+  const CheckoutNavbar({super.key, required this.title, required this.steps});
   final String title;
+  final Widget steps;
 
   @override
   State<CheckoutNavbar> createState() => _CheckoutNavbarState();

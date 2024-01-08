@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/payment/payment.dart';
+import 'package:payment_module/payment/screens/widget/header/header.dart';
+import 'package:payment_module/payment/screens/widget/steps.dart';
 import 'package:payment_module/payment/style/styles.dart';
 
 class Home extends StatelessWidget {
@@ -13,7 +16,18 @@ class Home extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/payment');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Payment(),
+                    // Pass the arguments as part of the RouteSettings. The
+                    // DetailScreen reads the arguments from these settings.
+                    settings: RouteSettings(
+                      arguments: PaymentArguments(
+                          const Header(), const StepsWidget(), "/", 1000000),
+                    ),
+                  ),
+                );
               },
               child: Text(
                 "Payment",
