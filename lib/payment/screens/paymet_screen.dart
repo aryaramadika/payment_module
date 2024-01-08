@@ -10,7 +10,7 @@ import 'package:payment_module/payment/style/styles.dart';
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key, required this.widgets});
 
-  final Widget? widgets;
+  final Widget widgets;
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -93,7 +93,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           child: Column(
             children: [
               //Note: TITLE PAYMENT
-              if (widget.widgets != null) widget.widgets!,
+              widget.widgets,
 
               //Note: vouchers
               const VouchersWidget(),

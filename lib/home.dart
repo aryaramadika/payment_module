@@ -48,6 +48,18 @@ class Home extends StatelessWidget {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.amber),
               ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/scan-qr');
+              },
+              child: Text("Scan QR"),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.amber),
+              ),
             )
           ],
         ),

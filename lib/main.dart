@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/coin/barcode.dart';
 import 'package:payment_module/home.dart';
 import 'package:payment_module/payment/payment.dart';
 import 'package:payment_module/ticket/transportation.dart';
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
         "/": (context) => const Home(),
         "/payment": (context) => const Payment(),
         "/transportation": (context) => const Transportation(),
+        "/scan-qr": (context) => const QRViewExample(),
       },
     );
   }
