@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
@@ -5,6 +6,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:payment_module/payment/style/styles.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
+import 'package:scan/scan.dart';
+import 'package:images_picker/images_picker.dart';
 
 class QRViewExample extends StatefulWidget {
   const QRViewExample({Key? key}) : super(key: key);
@@ -17,6 +22,8 @@ class _QRViewExampleState extends State<QRViewExample> {
   Barcode? result;
   String? barcodeData;
   QRViewController? controller;
+  bool isListening = false;
+
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   // In order to get hot reload to work we need to pause the camera if the platform
@@ -28,6 +35,41 @@ class _QRViewExampleState extends State<QRViewExample> {
       controller!.pauseCamera();
     }
     controller!.resumeCamera();
+  }
+
+  String qrcode = 'Unknown';
+
+  Future<void> _scanImage() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    // List<Media>? res = await ImagesPicker.pick(
+    //   count: 3,
+    //   pickType: PickType.image,
+    //   // maxSize: 500,
+    // );
+    if (pickedFile != null) {
+      print('file ffile ${pickedFile.path}');
+      try {
+        String? str = await Scan.parse(pickedFile.path);
+        print('str ffile $str');
+
+        if (str != null) {
+          setState(() {
+            barcodeData = str;
+          });
+        }
+      } catch (e) {
+        print('Error decoding QR code: $e');
+      }
+    }
+
+    // if (pickedFile != null) {
+    //   // final imageBytes = await File(pickedFile.path).readAsBytes();
+    //   // _decodeQRCode(pickedFile);
+    // } else {
+    //   print("No image picked");
+    // }
+    // print("picked image :::$pickedFile");
   }
 
   @override
@@ -43,9 +85,9 @@ class _QRViewExampleState extends State<QRViewExample> {
 
   Widget _buildQrView(BuildContext context) {
     // For this example, we set the dimensions based on the screen size
-    var scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
-        ? 150.0
+    var scanArea = (MediaQuery.of(context).size.width < 500 ||
+            MediaQuery.of(context).size.height < 500)
+        ? 300.0
         : 300.0;
 
     return Stack(
@@ -80,6 +122,7 @@ class _QRViewExampleState extends State<QRViewExample> {
           bottom: 72,
           right: 20,
           child: GestureDetector(
+            onTap: _scanImage,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               margin: const EdgeInsets.all(16),
@@ -90,7 +133,7 @@ class _QRViewExampleState extends State<QRViewExample> {
               ),
               child: Center(
                 child: Text(
-                  "Upload",
+                  'Upload',
                   style: TextStyle(color: whiteColor),
                 ),
               ),
@@ -106,6 +149,11 @@ class _QRViewExampleState extends State<QRViewExample> {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
+      print("scan data from scanner: $scanData");
+      print("scan data fromat from scanner: ${scanData.format}");
+      print("scan data raw from scanner: ${scanData.rawBytes}");
+
+      print("code");
       print(scanData.code);
       setState(() {
         result = scanData;
@@ -122,6 +170,66 @@ class _QRViewExampleState extends State<QRViewExample> {
       );
     }
   }
+
+  Future<void> _decodeQRCode(XFile imageFile) async {
+    print("Upload path: ${imageFile.path}");
+
+    try {
+      String? uploadResult = await Scan.parse(imageFile.path);
+      print("Upload result: $uploadResult");
+
+      // If you need to perform additional actions based on the upload result, you can do it here.
+    } catch (e) {
+      print('Error decoding QR code: $e');
+    }
+  }
+  // Future<void> _decodeQRCode(XFile imageFile) async {
+
+  // try {
+  //   // Read the image file as bytes
+  //   List<int> bytes = await File(imageFile.path).readAsBytes();
+
+  //   // Decode the QR code from the image
+  //   img.Image? image = img.decodeImage(Uint8List.fromList(bytes));
+
+  //   if (controller != null) {
+  //     // Get a single result from the stream
+  //     result = await controller!.scannedDataStream.first;
+
+  //     if (result != null) {
+  //       // Handle the decoded QR code result (e.g., display it, process it, etc.)
+  //       print('Decoded QR code: $result');
+  //     }
+  //   }
+  // } catch (e) {
+  //   print('Error decoding QR code: $e');
+  // }
+  // }
+  // Future<void> _decodeQRCode(XFile imageFile) async {
+  //   print("running decoded qr");
+  //   print(
+  //     "running image file $imageFile",
+  //   );
+
+  //   try {
+  //     // Read the image file as bytes
+  //     List<int> bytes = await File(imageFile.path).readAsBytes();
+
+  //     // Decode the QR code from the image
+  //     img.Image? image = img.decodeImage(Uint8List.fromList(bytes));
+
+  //     print("imager $image");
+  //     print("contol $controller");
+
+  //     if (controller != null && image != null) {
+  //       // Create a subscription to listen to the stream only once
+  //       late StreamSubscription<Barcode> subscription;
+  //       result = await controller!.scannedDataStream.first;
+  //     }
+  //   } catch (e) {
+  //     print('Error decoding QR code: $e');
+  //   }
+  // }
 
   @override
   void dispose() {

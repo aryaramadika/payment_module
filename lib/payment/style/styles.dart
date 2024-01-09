@@ -4,6 +4,7 @@ Color primary = const Color(0xff16AFBD);
 Color blackColor = const Color(0xff202020);
 Color greyColor = const Color(0xff797979);
 Color whiteColor = const Color(0xffffffff);
+Color secondGreyColor = const Color(0XFF838383);
 
 Color successColor = const Color(0xff53D258);
 Color errorColor = const Color(0xffEB70A5);
