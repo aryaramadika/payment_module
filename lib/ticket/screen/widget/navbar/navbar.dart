@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:payment_module/payment/style/styles.dart';
 
-class CheckoutNavbar extends StatefulWidget {
-  const CheckoutNavbar({super.key, required this.title, required this.steps});
+class Navbar extends StatefulWidget {
+  const Navbar({super.key, required this.title});
   final String title;
-  final Widget steps;
 
   @override
-  State<CheckoutNavbar> createState() => _CheckoutNavbarState();
+  State<Navbar> createState() => _NavbarState();
 }
 
-class _CheckoutNavbarState extends State<CheckoutNavbar> {
+class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,38 +47,6 @@ class _CheckoutNavbarState extends State<CheckoutNavbar> {
               ],
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                widget.steps,
-                SizedBox(
-                  width: 18,
-                ),
-                Image.asset(
-                  "assets/images/dash.png",
-                  width: 49,
-                ),
-                SizedBox(
-                  width: 18,
-                ),
-                Column(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      color: Color(0xffEC8433),
-                      size: 16,
-                    ),
-                    Text(
-                      "Payment",
-                      style: TextStyle(color: whiteColor, fontWeight: semiBold),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );

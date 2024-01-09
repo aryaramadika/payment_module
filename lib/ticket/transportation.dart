@@ -3,6 +3,7 @@ import 'package:payment_module/payment/screens/widget/navbar/navbar.dart';
 import 'package:payment_module/payment/style/styles.dart';
 import 'package:payment_module/ticket/screen/transportation_screen.dart';
 import 'package:payment_module/ticket/screen/widget/header/header.dart';
+import 'package:payment_module/ticket/screen/widget/navbar/navbar.dart';
 
 class Transportation extends StatefulWidget {
   const Transportation({super.key});
@@ -38,9 +39,8 @@ class _TransportationState extends State<Transportation> {
       backgroundColor: whiteColor,
       body: Column(
         children: [
-          CheckoutNavbar(
+          Navbar(
             title: headerTitle,
-            steps: Text(''),
           ),
           Container(
             decoration: const BoxDecoration(
