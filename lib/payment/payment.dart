@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/payment/model/billing_model.dart';
 import 'package:payment_module/payment/screens/paymet_screen.dart';
 import 'package:payment_module/payment/screens/widget/header/header.dart';
 import 'package:payment_module/payment/screens/widget/navbar/navbar.dart';
@@ -9,8 +10,10 @@ class PaymentArguments {
   final Widget steps;
   final String routes;
   final int totalPrice;
+  final List<BillingDetail> bills;
 
-  PaymentArguments(this.detailWidget, this.steps, this.routes, this.totalPrice);
+  PaymentArguments(
+      this.detailWidget, this.steps, this.routes, this.totalPrice, this.bills);
 }
 
 class Payment extends StatelessWidget {
@@ -28,6 +31,7 @@ class Payment extends StatelessWidget {
           CheckoutNavbar(
             title: "Checkout",
             steps: dynamicWidget.steps,
+            routes: dynamicWidget.routes,
           ),
           Expanded(
             child: PaymentScreen(

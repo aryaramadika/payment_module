@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/payment/model/billing_model.dart';
 import 'package:payment_module/payment/payment.dart';
 import 'package:payment_module/payment/screens/widget/header/header.dart';
 import 'package:payment_module/payment/screens/widget/steps.dart';
@@ -12,6 +13,16 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<BillingDetail> dummyBillingList = [
+      BillingDetail(
+        name: "Basic Fee",
+        amount: 200000,
+      ),
+      BillingDetail(
+        name: "Delivery Fee",
+        amount: 200000,
+      ),
+    ];
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -36,9 +47,12 @@ class Home extends StatelessWidget {
                           // Pass the arguments as part of the RouteSettings. The
                           // DetailScreen reads the arguments from these settings.
                           settings: RouteSettings(
-                            arguments: PaymentArguments(const Header(),
-                                const StepsWidget(), "/", 1000000),
-                          ),
+                              arguments: PaymentArguments(
+                                  const Header(),
+                                  const StepsWidget(),
+                                  "/",
+                                  1000000,
+                                  dummyBillingList)),
                         ),
                       );
                     },

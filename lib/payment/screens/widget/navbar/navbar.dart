@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:payment_module/payment/style/styles.dart';
 
 class CheckoutNavbar extends StatefulWidget {
-  const CheckoutNavbar({super.key, required this.title, required this.steps});
+  const CheckoutNavbar(
+      {super.key,
+      required this.title,
+      required this.steps,
+      required this.routes});
   final String title;
   final Widget steps;
+  final String routes;
 
   @override
   State<CheckoutNavbar> createState() => _CheckoutNavbarState();
@@ -26,7 +31,9 @@ class _CheckoutNavbarState extends State<CheckoutNavbar> {
                 SizedBox(
                   width: 24,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, widget.routes);
+                    },
                     icon: Icon(
                       Icons.arrow_back_ios_new,
                       color: whiteColor,

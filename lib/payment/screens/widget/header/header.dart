@@ -87,7 +87,7 @@ class _HeaderState extends State<Header> {
             ],
           ),
         ),
-        const BillingInformation()
+        // const BillingInformation()
       ],
     );
   }

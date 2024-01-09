@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/payment/model/billing_model.dart';
 import 'package:payment_module/payment/model/payment_model.dart';
+import 'package:payment_module/payment/payment.dart';
 import 'package:payment_module/payment/screens/widget/add_card.dart';
 import 'package:payment_module/payment/screens/widget/billing_info.dart';
 import 'package:payment_module/payment/screens/widget/button/button.dart';
@@ -61,6 +63,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
     ),
   ];
 
+  List<BillingDetail> dummyBillingList = [
+    BillingDetail(
+      name: "Basic Fee",
+      amount: 200000,
+    ),
+    BillingDetail(
+      name: "Delivery Fee",
+      amount: 200000,
+    ),
+  ];
+
+  double get total => dummyBillingList.fold(
+      0, (previousValue, bill) => previousValue + bill.amount);
+
   // Function to handle the selected payment method
   void handlePaymentMethod(String paymentMethod) {
     setState(() {
@@ -77,6 +93,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dynamicWidget =
+        ModalRoute.of(context)!.settings.arguments as PaymentArguments;
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.only(top: 20),
@@ -94,6 +112,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             children: [
               //Note: TITLE PAYMENT
               widget.widgets,
+
+              BillingInformation(
+                bills: dynamicWidget.bills,
+                total: total,
+              ),
 
               //Note: vouchers
               const VouchersWidget(),
