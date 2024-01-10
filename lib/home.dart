@@ -118,6 +118,15 @@ class _HomeState extends State<Home> {
                       backgroundColor: MaterialStateProperty.all(Colors.amber),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/event');
+                    },
+                    child: Text("Event"),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                    ),
+                  ),
                   const SizedBox(
                     width: 20,
                   ),
