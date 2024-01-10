@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/coin/barcode.dart';
 import 'package:payment_module/payment/model/billing_model.dart';
 import 'package:payment_module/payment/payment.dart';
 import 'package:payment_module/payment/screens/widget/header/header.dart';
@@ -7,12 +8,52 @@ import 'package:payment_module/payment/style/styles.dart';
 import 'package:payment_module/wigdet/coin/new_progress_coin.dart';
 import 'package:payment_module/wigdet/coin/progress_coin.dart';
 import 'package:payment_module/wigdet/coin/redeem_guide.dart';
+import 'package:payment_module/wigdet/guide_modal.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  String? barcodeDatas;
+
+  void initState() {
+    super.initState();
+    if (barcodeDatas != null) {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (ctx) {
+          return const RedeemModal();
+        },
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    void _handleScannedData(String? scannedData) {
+      print("sccamed :$scannedData");
+      setState(() {
+        barcodeDatas = scannedData;
+      });
+    }
+
+    void _openRedeemModal() {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (ctx) {
+          return const RedeemModal();
+        },
+      );
+    }
+
     List<BillingDetail> dummyBillingList = [
       BillingDetail(
         name: "Basic Fee",
@@ -28,6 +69,7 @@ class Home extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              Text('${barcodeDatas ?? "Upload"}'),
               RedeemGuide(),
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
@@ -82,6 +124,13 @@ class Home extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/scan-qr');
+
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => QRViewExample(),
+                      //   ),
+                      // );
                     },
                     child: Text("Scan QR"),
                     style: ButtonStyle(
@@ -89,6 +138,18 @@ class Home extends StatelessWidget {
                     ),
                   )
                 ],
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  _openRedeemModal();
+                },
+                child: Text(
+                  "Show Modal Sheet",
+                  style: TextStyle(color: whiteColor),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(primary),
+                ),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/ticket/screen/airport/airport.dart';
 import 'package:payment_module/ticket/screen/widget/search/search_boat.dart';
 import 'package:payment_module/ticket/screen/widget/search/search_wigdet.dart';
 
@@ -56,7 +57,7 @@ class _TransportationScreenState extends State<TransportationScreen> {
                   child: SearchWidget(),
                 ),
                 Container(
-                  child: Text("Airport Container"),
+                  child: AirportWidget(),
                 ),
               ],
             ),

@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:payment_module/home.dart';
 import 'package:payment_module/payment/style/styles.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,7 +13,7 @@ import 'package:scan/scan.dart';
 import 'package:images_picker/images_picker.dart';
 
 class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+  const QRViewExample({super.key});
 
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
@@ -42,11 +43,6 @@ class _QRViewExampleState extends State<QRViewExample> {
   Future<void> _scanImage() async {
     XFile? pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
-    // List<Media>? res = await ImagesPicker.pick(
-    //   count: 3,
-    //   pickType: PickType.image,
-    //   // maxSize: 500,
-    // );
     if (pickedFile != null) {
       print('file ffile ${pickedFile.path}');
       try {
@@ -56,24 +52,21 @@ class _QRViewExampleState extends State<QRViewExample> {
         if (str != null) {
           setState(() {
             barcodeData = str;
+            // widget.handleScannedData(str);
           });
+          Navigator.pushNamed(context, "/");
         }
       } catch (e) {
         print('Error decoding QR code: $e');
       }
     }
-
-    // if (pickedFile != null) {
-    //   // final imageBytes = await File(pickedFile.path).readAsBytes();
-    //   // _decodeQRCode(pickedFile);
-    // } else {
-    //   print("No image picked");
-    // }
-    // print("picked image :::$pickedFile");
   }
 
   @override
   Widget build(BuildContext context) {
+    if (barcodeData != null) {
+      Navigator.pushNamed(context, "/");
+    }
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -133,7 +126,7 @@ class _QRViewExampleState extends State<QRViewExample> {
               ),
               child: Center(
                 child: Text(
-                  'Upload',
+                  '${barcodeData ?? "Upload"}',
                   style: TextStyle(color: whiteColor),
                 ),
               ),
@@ -158,6 +151,7 @@ class _QRViewExampleState extends State<QRViewExample> {
       setState(() {
         result = scanData;
         barcodeData = scanData.code;
+        // widget.handleScannedData(scanData.code);
       });
     });
   }
