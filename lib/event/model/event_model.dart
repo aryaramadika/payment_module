@@ -104,7 +104,10 @@ List<Category> categories = [
     id: 2,
     name: 'Culture',
   ),
-  Category(id: 3, name: 'Official Events')
+  Category(
+    id: 3,
+    name: 'Official Events',
+  ),
 ];
 
 List<Category> moreFilters = [
@@ -141,3 +144,41 @@ ApiResponse dummyApiResponse = ApiResponse(
   },
   requirement: ['Valid ID', 'Proof of address'],
 );
+
+class TncKeys {
+  String age;
+  String minimumPerson;
+  String dosAndDonts;
+  String dos;
+  String donts;
+  String rnr;
+  String refundable;
+  String reschedule;
+
+  TncKeys(
+      {required this.age,
+      required this.minimumPerson,
+      required this.dosAndDonts,
+      required this.dos,
+      required this.donts,
+      required this.rnr,
+      required this.refundable,
+      required this.reschedule});
+}
+
+TncKeys tncKeys = TncKeys(
+  age: 'Age',
+  minimumPerson: 'Minimum Person',
+  dosAndDonts: "Do's and Dont's",
+  dos: "Do's",
+  donts: "Dont's",
+  rnr: 'Refundable and Reschedule Detail',
+  refundable: 'Refundable',
+  reschedule: 'Reschedule',
+);
+
+List<String> recentSearch = [
+  'Coldplay',
+  'Denpasar Festival',
+  'Tari Kecak Uluwatu'
+];

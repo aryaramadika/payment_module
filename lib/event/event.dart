@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:payment_module/event/screens/event_list.dart';
 import 'package:payment_module/event/screens/widget/appbar.dart';
 import 'package:payment_module/event/screens/widget/detailEvent/detail_event_gallery.dart';
+import 'package:payment_module/event/screens/widget/detailEvent/detail_event_map.dart';
+import 'package:payment_module/event/screens/widget/detailEvent/detail_event_tnc.dart';
 import 'package:payment_module/event/screens/widget/filterModal/filter_modal.dart';
+import 'package:payment_module/event/screens/widget/searchModal/search_modal.dart';
 import 'package:payment_module/event/styles/style.dart';
 
 class Event extends StatefulWidget {
@@ -42,24 +46,38 @@ class _EventState extends State<Event> {
             ));
   }
 
-  // void _openLocationOverlay() {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     isScrollControlled: true,
-  //     clipBehavior: Clip.antiAlias,
-  //     shape: const RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(36),
-  //         topRight: Radius.circular(36),
-  //       ),
-  //     ),
-  //     builder: (context) => const DetailEventMap(
-  //       latitude: -8.663942745929369,
-  //       longitude: 115.2350960400886,
-  //       address: "Jl. Lorem Ipsum",
-  //     ),
-  //   );
-  // }
+  void _openSearchOverlay() {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        clipBehavior: Clip.antiAlias,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(36),
+            topRight: Radius.circular(36),
+          ),
+        ),
+        builder: (ctx) => SearchModal());
+  }
+
+  void _openLocationOverlay() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      clipBehavior: Clip.antiAlias,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(36),
+          topRight: Radius.circular(36),
+        ),
+      ),
+      builder: (context) => const DetailEventMap(
+        latitude: -8.663942745929369,
+        longitude: 115.2350960400886,
+        address: "Jl. Lorem Ipsum",
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +132,7 @@ class _EventState extends State<Event> {
                         child: IconButton(
                           iconSize: 32,
                           padding: EdgeInsets.zero,
-                          onPressed: _openFilterOverlay,
+                          onPressed: _openLocationOverlay,
                           icon: const Icon(
                             Icons.tune,
                             color: Colors.black,
@@ -124,7 +142,7 @@ class _EventState extends State<Event> {
                     ],
                   ),
                   Expanded(
-                    // child: EventList(),
+                    // child: ,
                     child: DetailEventGallery(),
                   ),
                 ],
